@@ -3,7 +3,7 @@ import _ from 'lodash';
 import bootstrap from 'bootstrap';
 import Typed from 'typed.js';
 import validate from 'validate.js';
-// import toastr from "toastr";
+import toastr from 'toastr';
 
 import './index.css';
 import './_vendor.scss';
@@ -30,9 +30,9 @@ $('#subscribeBtn').on('click', (e) => {
   const isInvalid = validate.single(emailId, { presence: true, email: true });
   if (isInvalid === undefined) {
     console.log();
-    // toastr.success("You have been subscribed !");
+    toastr.success('You have been subscribed !');
   } else {
-    // toastr.error("Invalid email address is entered!");
+    toastr.error('Invalid email address is entered!');
   }
 });
 
