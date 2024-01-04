@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -10,6 +11,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
+  devServer: {
+    static: './dist',
+  },
   module: {
     rules: [
       {
@@ -20,6 +24,23 @@ module.exports = {
         test: /\.s[ac]ss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(png|jpeg|jpg|gif)$/,
+        type: 'assets/resource',
+      },
     ],
   },
+
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: './src/index.html',
+      chunks: ['index'],
+      filename: './index.html',
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/pages/courses.html',
+      chunks: ['courses'],
+      filename: './courses.html',
+    }),
+  ],
 };
